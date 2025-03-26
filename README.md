@@ -73,7 +73,7 @@ This project demonstrates how a modern SQL Data Warehouse is designed and implem
    The choice of the star schema model ensures that the data warehouse is optimized for reporting and analytics, with a focus on query performance and simplicity.
 
 ## Technologies Used
-- **SQL Server**: The database platform used to store and manage the data warehouse.
+- **Microsoft SQL Server**: The database platform used to store and manage the data warehouse.
 - **ETL**: SQL scripts are used for the extraction, transformation, and loading of data.
 - **Git**: Version control is used to manage and track changes in the project.
 - **Notion**: Project management tool used to organize tasks and track progress.
