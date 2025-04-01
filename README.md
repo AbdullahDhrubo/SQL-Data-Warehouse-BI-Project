@@ -1,9 +1,9 @@
 # SQL Data Warehouse from Scratch - Full Hands-On Data Engineering Project
 
-## Overview
+## 📖 Overview
 This project demonstrates how a modern SQL Data Warehouse is designed and implemented, using industry best practices. The project reflects a deep understanding of building scalable and efficient data pipelines, integrating diverse data sources, and designing a robust data architecture. The focus is on the ETL (Extract, Transform, Load) process, data modeling, and reporting, showcasing how a data warehouse can be built to support informed decision-making.
 
-## Key Phases of the Project
+## 🎯 Key Phases of the Project
 
 ### 1. **ETL (Extract, Transform, Load) Process**
    The ETL process serves as the backbone of any data warehouse, ensuring that data is accurately extracted, transformed, and loaded to maintain the integrity and usefulness of the warehouse. The phases are applied as follows:
@@ -34,7 +34,7 @@ This project demonstrates how a modern SQL Data Warehouse is designed and implem
    - **Silver Layer**: This layer holds cleaned and transformed data that is ready for analysis but not yet aggregated.
    - **Gold Layer**: Contains the final aggregated data, optimized for reporting and analysis.
 
-#### Medallion Architecture
+#### 🏗️ Medallion Architecture
 
 | Aspect | Bronze Layer | Silver Layer | Gold Layer |
 |--------|-------------|--------------|------------|
@@ -72,7 +72,7 @@ This project demonstrates how a modern SQL Data Warehouse is designed and implem
 
    The choice of the star schema model ensures that the data warehouse is optimized for reporting and analytics, with a focus on query performance and simplicity.
 
-## Technologies Used
+## 🛠️ Technologies Used
 - **Microsoft SQL Server**: The database platform used to store and manage the data warehouse.
 - **ETL**: SQL scripts are used for the extraction, transformation, and loading of data.
 - **Git**: Version control is used to manage and track changes in the project.
@@ -103,6 +103,35 @@ This project demonstrates how a modern SQL Data Warehouse is designed and implem
 ### Step 6: Data Modeling
 1. **Create the Star Schema**: The fact and dimension tables are created using a star schema model to optimize query performance and simplicity.
 
+## 📂 Repository Structure
+```
+data-warehouse-project/
+│
+├── datasets/                           # Raw datasets used for the project (ERP and CRM data)
+│
+├── docs/                               # Project documentation and architecture details
+│   ├── data_architecture.png           # PNG file shows the project's architecture
+│   ├── data_catalog.md                 # Catalog of datasets, including field descriptions and metadata
+│   ├── data_flow.png                   # PNG file for the data flow diagram
+│   ├── data_integration.png            # PNG file about how tables are related
+│   ├── data_models.png                 # PNG file for data models (star schema)
+│   ├── naming-conventions.md           # Consistent naming guidelines for tables, columns, and files
+│
+├── scripts/                            # SQL scripts for ETL and transformations
+│   ├── bronze/                         # Scripts for extracting and loading raw data
+│   ├── silver/                         # Scripts for cleaning and transforming data
+│   ├── gold/                           # Scripts for creating analytical models
+│
+├── tests/                              # Test scripts and quality files
+│
+├── README.md                           # Project overview and instructions
+├── LICENSE                             # License information for the repository
+├── .gitignore                          # Files and directories to be ignored by Git
+└── requirements.txt                    # Dependencies and requirements for the project
+```
+---
+
+
 ## Contribution Guidelines
 - Fork the repository, make changes, and submit pull requests.
 - Open issues for any bugs or suggestions, and they will be addressed promptly.
@@ -111,6 +140,7 @@ This project demonstrates how a modern SQL Data Warehouse is designed and implem
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
 ## Acknowledgements
+- The resources and implementation is inspried by **Baraa Khatib Salkini**, also known as **Data With Baraa**.
 - The techniques used in this project are based on real-world data engineering practices designed to provide flexibility, scalability, and efficiency.
 - Thanks to the open-source community for providing the tools that make data engineering possible.
 
