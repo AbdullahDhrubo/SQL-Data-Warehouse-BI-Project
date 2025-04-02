@@ -1,3 +1,11 @@
+/*
+=========================================================
+
+   DATA QUALITY, TRANSFORMATION & CLEANSING
+
+=========================================================
+*/
+
 /*-------------------------------------------------------
    BEFORE TRANSFORMATION
 --------------------------------------------------------*/
@@ -10,15 +18,11 @@ SELECT *
 FROM bronze.crm_cust_info
 LIMIT 100;
 
--- Retrive the count of the primary key using GROUP BY
+-- Check for duplicates or NULL primary key values
 SELECT cst_id, COUNT (*)
 FROM bronze.crm_cust_info
 GROUP BY cst_id
 HAVING COUNT(*) > 1 OR cst_id IS NULL;
-
-/*-------------------------------------------------------
-   DATA TRANSFORMATION & CLEANSING
---------------------------------------------------------*/
 
 -- Starting with few random checks, for issues
 -- Verify the newest record for a specific customer (e.g., cst_id = 29466), notice the cst_create_date
@@ -26,8 +30,14 @@ SELECT *
 FROM bronze.crm_cust_info
 WHERE cst_id = 29466;
 
+/*
+=========================================================
+   PRIMARY KEY ISSUE
+=========================================================
+*/
+
 /*-------------------------------------------------------
-   WINDOW FUNCTION IMPLEMENTATION
+   WINDOW FUNCTION APPROACH
 --------------------------------------------------------*/
 
 -- Use ROW_NUMBER with a WINDOW function to sort the records
@@ -58,7 +68,7 @@ SELECT *
 WHERE flag_last = 1
 
 /*-------------------------------------------------------
-   Common Table Expression (CTE) IMPLEMENTATION
+   Common Table Expression (CTE) APPROACH
 --------------------------------------------------------*/
 
 /* 
@@ -84,4 +94,4 @@ SELECT *
 FROM RankedCust
 WHERE rn = 1;
 
--- Check for unwanted spaces in STRING values
+-- Check for unwanted spaces in string values (adjust column name as needed)
