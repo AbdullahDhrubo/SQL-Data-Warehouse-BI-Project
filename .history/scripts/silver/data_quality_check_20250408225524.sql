@@ -105,6 +105,9 @@ WITH RankedCust AS (
 )
 SELECT *
 FROM RankedCust
+WHERE rn <> 1;
+SELECT *
+FROM RankedCust
 WHERE rn = 1;
 
 /*
@@ -123,7 +126,7 @@ WHERE cst_firstname != TRIM(cst_firstname);
 -- Clean the first and last name fields by removing unwanted spaces.
 -- Only the latest record for each customer (flag_last = 1) is considered.
 SELECT 
-   cst_id, 
+   cust_id, 
    cst_key,
    TRIM (cst_firstname) AS cst_firstname,
    TRIM (cst_lastname) AS cst_lastname,
@@ -153,7 +156,7 @@ FROM bronze.crm_cust_info;
 --   - Change 'S' to 'Single' and 'M' to 'Married' for marital status.
 -- Uses TRIM and UPPER to eliminate discrepancies due to casing or extra spaces.
 SELECT 
-   cst_id, 
+   cust_id, 
    cst_key,
    TRIM (cst_firstname) AS cst_firstname,
    TRIM (cst_lastname) AS cst_lastname,

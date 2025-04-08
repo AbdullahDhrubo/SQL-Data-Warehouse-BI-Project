@@ -14,8 +14,9 @@
 -- Expectation: No result returned if data is clean
 
 -- Retrieve the customer info table
-SELECT TOP 10 *
-FROM bronze.crm_cust_info;
+SELECT *
+FROM bronze.crm_cust_info
+LIMIT 100;
 
 -- Check for duplicates or NULL primary key values
 SELECT cst_id, COUNT (*)
@@ -82,27 +83,13 @@ WITH RankedCust AS (
                               ORDER BY cst_create_date DESC) AS rn
     FROM bronze.crm_cust_info
 )
-SELECT *
-FROM RankedCust;
 
 -- Identify records that should be deleted (duplicates, where rn is not 1)
-WITH RankedCust AS (
-    SELECT *,
-           ROW_NUMBER() OVER (PARTITION BY cst_id 
-                              ORDER BY cst_create_date DESC) AS rn
-    FROM bronze.crm_cust_info
-)
 SELECT *
 FROM RankedCust
 WHERE rn <> 1;
 
 -- Retrieve de-duplicated records (only the newest record per cst_id)
-WITH RankedCust AS (
-    SELECT *,
-           ROW_NUMBER() OVER (PARTITION BY cst_id 
-                              ORDER BY cst_create_date DESC) AS rn
-    FROM bronze.crm_cust_info
-)
 SELECT *
 FROM RankedCust
 WHERE rn = 1;
@@ -123,7 +110,7 @@ WHERE cst_firstname != TRIM(cst_firstname);
 -- Clean the first and last name fields by removing unwanted spaces.
 -- Only the latest record for each customer (flag_last = 1) is considered.
 SELECT 
-   cst_id, 
+   cust_id, 
    cst_key,
    TRIM (cst_firstname) AS cst_firstname,
    TRIM (cst_lastname) AS cst_lastname,
@@ -153,7 +140,7 @@ FROM bronze.crm_cust_info;
 --   - Change 'S' to 'Single' and 'M' to 'Married' for marital status.
 -- Uses TRIM and UPPER to eliminate discrepancies due to casing or extra spaces.
 SELECT 
-   cst_id, 
+   cust_id, 
    cst_key,
    TRIM (cst_firstname) AS cst_firstname,
    TRIM (cst_lastname) AS cst_lastname,
