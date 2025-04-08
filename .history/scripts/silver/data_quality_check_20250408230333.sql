@@ -259,20 +259,7 @@ WHERE cst_id = 29466;
 =========================================================
 */
 
-/*-------------------------------------------------------
-   BEFORE TRANSFORMATION
---------------------------------------------------------*/
-
--- Check for nulls or duplicates in the Primary Key
--- Expectation: No result returned if data is clean
-
--- Retrieve the product info table
-SELECT TOP 10 *
-FROM bronze.crm_prd_info;
-
--- Check for duplicates or NULL primary key values
-SELECT prd_id, COUNT (*)
-FROM bronze.crm_prd_info
-GROUP BY prd_id
-HAVING COUNT(*) > 1 OR prd_id IS NULL;
-
+SELECT cst_id, COUNT (*)
+FROM bronze.crm_cust_info
+GROUP BY cst_id
+HAVING COUNT(*) > 1 OR cst_id IS NULL;
